@@ -8,9 +8,13 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        mulish: ["Mulish"],
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        appWhite: "#fefefe",
+        appBlack: "#1e1e1e",
+        appGreen: "#65B741",
       },
     },
   },
