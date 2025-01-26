@@ -9,6 +9,15 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterRegion, setFilterRegion] = useState("");
 
+  const regionOptions = [
+    { value: "", label: "Filter by Region" },
+    { value: "Africa", label: "Africa" },
+    { value: "Americas", label: "America" },
+    { value: "Asia", label: "Asia" },
+    { value: "Europe", label: "Europe" },
+    { value: "Oceania", label: "Oceania" },
+  ];
+
   useEffect(() => {
     const fetchCountries = async () => {
       try {
@@ -58,12 +67,11 @@ const Home = () => {
           onChange={(e) => setFilterRegion(e.target.value)}
           className="outline-none shadow-md px-2.5 rounded-md"
         >
-          <option value="">Filter by Region</option>
-          <option value="Africa">Africa</option>
-          <option value="Americas">America</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="Oceania">Oceania</option>
+          {regionOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
       </div>
 

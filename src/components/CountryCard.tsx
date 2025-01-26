@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-interface countryCardProps {
+interface CountryCardProps {
   country: string;
   population: string;
   region: string;
@@ -8,26 +8,37 @@ interface countryCardProps {
   countryFlag: string;
 }
 
-const CountryCard: FC<countryCardProps> = ({
+const CountryCard: FC<CountryCardProps> = ({
   country,
   population,
   region,
   capital,
   countryFlag,
 }) => {
+  const countryData = [
+    { label: "Population", value: population },
+    { label: "Region", value: region },
+    { label: "Capital", value: capital },
+  ];
+
   return (
-    <div className="my-5 w-full bg-yellow-200 ">
+    <div className="my-5 w-full shadow-lg">
       <img
         src={countryFlag}
         alt={`${country} flag`}
-        className="w-full h-40 object-cover mb-3 rounded-md"
+        className="rounded-t-lg object-cover h-[200px] w-full"
       />
-      <h1 className="text-base font-bold">{country}</h1>
-      <ul className="mt-3">
-        <li>{population}</li>
-        <li>{region}</li>
-        <li>{capital}</li>
-      </ul>
+
+      <div className="bg-[#f6fffb] shadow-sm px-3 py-2">
+        <h1 className="text-lg mt-2 font-bold">{country}</h1>
+        <div className="mt-3">
+          {countryData.map((item, index) => (
+            <h3 key={index} className="font-bold text-base">
+              {item.label}: <span className="font-normal">{item.value}</span>
+            </h3>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
