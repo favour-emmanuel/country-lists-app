@@ -29,7 +29,7 @@ const CountryCard: FC<CountryCardProps> = ({
         className="rounded-t-lg object-cover h-[200px] w-full"
       />
 
-      <div className="bg-[#f6fffb] shadow-sm px-3 py-2">
+      <div className="bg-[#f6fffb] shadow-sm px-3 py-2 cursor-pointer">
         <h1 className="text-lg mt-2 font-bold">{country}</h1>
         <div className="mt-3">
           {countryData.map((item, index) => (
