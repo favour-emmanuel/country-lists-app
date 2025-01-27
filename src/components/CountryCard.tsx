@@ -6,6 +6,7 @@ interface CountryCardProps {
   region: string;
   capital: string;
   countryFlag: string;
+  onClick: () => void; // Added onClick prop
 }
 
 const CountryCard: FC<CountryCardProps> = ({
@@ -14,6 +15,7 @@ const CountryCard: FC<CountryCardProps> = ({
   region,
   capital,
   countryFlag,
+  onClick,
 }) => {
   const countryData = [
     { label: "Population", value: population },
@@ -22,14 +24,14 @@ const CountryCard: FC<CountryCardProps> = ({
   ];
 
   return (
-    <div className="my-5 w-full shadow-lg">
+    <div className="my-5 w-full shadow-lg cursor-pointer" onClick={onClick}>
       <img
         src={countryFlag}
         alt={`${country} flag`}
         className="rounded-t-lg object-cover h-[200px] w-full"
       />
 
-      <div className="bg-[#f6fffb] shadow-sm px-3 py-2 cursor-pointer">
+      <div className="bg-[#f6fffb] dark:bg-appBlack dark:text-appWhite text-appDark shadow-sm px-3 py-2 cursor-pointer">
         <h1 className="text-lg mt-2 font-bold">{country}</h1>
         <div className="mt-3">
           {countryData.map((item, index) => (

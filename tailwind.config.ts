@@ -7,13 +7,15 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    darkMode: "class",
     extend: {
       fontFamily: {
         mulish: ["Mulish"],
       },
       colors: {
         appWhite: "#fefefe",
-        appBlack: "#1e1e1e",
+        appDark: "#1e1e1e",
+        appBlack: "#0d0d0d",
         appGreen: "#65B741",
       },
     },
