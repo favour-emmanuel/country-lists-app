@@ -1,8 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -16,7 +16,7 @@ const ThemeToggle = () => {
 
   return (
     <button
-      className="text-appBlack dark:text-appWhite text-lg"
+      className="text-lg"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {theme === "light" ? (

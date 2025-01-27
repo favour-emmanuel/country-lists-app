@@ -26,6 +26,7 @@ const Home = () => {
       try {
         const response = await fetch("https://restcountries.com/v3.1/all");
         const data = await response.json();
+        // console.log("rannn", data);
         const formattedData = data.map((country: any) => ({
           country: country.name.common,
           population: country.population.toLocaleString(),
@@ -34,7 +35,7 @@ const Home = () => {
           countryFlag: country.flags.svg,
           details: {
             ...country,
-            countryFlag: country.flags.svg, // Add flag for details view
+            countryFlag: country.flags.svg,
           },
         }));
         setCountries(formattedData);
@@ -46,7 +47,6 @@ const Home = () => {
     fetchCountries();
   }, []);
 
-  // Filter countries based on search and region
   const filteredCountries = countries.filter(
     (country: any) =>
       country.country.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -63,15 +63,15 @@ const Home = () => {
       ) : (
         <>
           {/* Search and Filter */}
-          <div className="flex justify-between">
-            <div className="flex items-center gap-3 rounded-md bg-appDark border-appGreen/50 px-2.5 py-2 shadow-md w-full lg:max-w-[22rem] max-w-[15rem]">
+          <div className="flex flex-col md:flex-row gap-3 justify-between">
+            <div className="flex items-center gap-3 bg-white rounded-md dark:bg-[#242424] border-appGreen/50 px-2.5 py-2 shadow-md ">
               <span className="text-lg">
                 <Icon icon="flowbite:search-outline" />
               </span>
               <input
                 type="search"
                 placeholder="Search for a country..."
-                className="outline-none py-1.5 px-3 text-base w-full bg-transparent"
+                className="outline-none py-1.5 px-3 text-sm sm:text-base w-full bg-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -80,7 +80,7 @@ const Home = () => {
             <select
               value={filterRegion}
               onChange={(e) => setFilterRegion(e.target.value)}
-              className="outline-none text-appGreen shadow-md px-2.5 rounded-md"
+              className="outline-none text-appGreen bg-appWhite dark:bg-[#242424] text-sm sm:text-base shadow-md px-3 py-4 rounded-md"
             >
               {regionOptions.map((option) => (
                 <option key={option.value} value={option.value}>
