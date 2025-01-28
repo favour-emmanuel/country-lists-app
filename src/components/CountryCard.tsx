@@ -1,15 +1,9 @@
-import React, { FC } from "react";
+"use client";
 
-interface CountryCardProps {
-  country: string;
-  population: string;
-  region: string;
-  capital: string;
-  countryFlag: string;
-  onClick: () => void;
-}
+import React from "react";
+import { IBasicDetail, ICountryCardProps } from "@/types/country";
 
-const CountryCard: FC<CountryCardProps> = ({
+const CountryCard: React.FC<ICountryCardProps> = ({
   country,
   population,
   region,
@@ -17,7 +11,7 @@ const CountryCard: FC<CountryCardProps> = ({
   countryFlag,
   onClick,
 }) => {
-  const countryData = [
+  const countryData: IBasicDetail[] = [
     { label: "Population", value: population },
     { label: "Region", value: region },
     { label: "Capital", value: capital },
