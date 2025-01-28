@@ -54,7 +54,7 @@ const Home = () => {
   );
 
   return (
-    <div className="w-full lg:px-12 px-6 lg:mt-12 mt-10">
+    <div className="w-full lg:px-12 px-6 lg:mt-28 mt-24">
       {selectedCountry ? (
         <CountryDetails
           country={selectedCountry}
@@ -71,7 +71,7 @@ const Home = () => {
               <input
                 type="search"
                 placeholder="Search for a country..."
-                className="outline-none py-1.5 px-3 text-sm sm:text-base w-full bg-transparent"
+                className="outline-none py-1.5 px-3 text-sm sm:text-base w-full bg-transparent placeholder:text-appGreen/85"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
