@@ -100,19 +100,19 @@ export default function CountryDetailsPage() {
       <div className="my-5">
         <button
           onClick={() => router.push("/")}
-          className="text-base rounded-md flex items-center gap-2 font-bold text-appGreen"
+          className="text-base rounded-md flex items-center gap-2 font-bold text-appGreen mb-4"
         >
           <span className="text-xl">
             <Icon icon="flowbite:arrow-left-outline" />
           </span>
           Back to Home
         </button>
-        <div className="w-full border dark:border-appGreen/35 p-3 rounded-xl lg:max-w-[30rem] mx-auto shadow-md">
+        <div className="w-full border dark:border-appGreen/35 p-3 rounded-xl lg:max-w-[32rem] mx-auto shadow-md">
           <div className="mt-4">
             <Image
               src={country.countryFlag}
               alt={`${country.name.common} flag`}
-              className="w-full object-cover rounded-lg"
+              className="h-[200px] w-full object-cover rounded-lg"
               width={200}
               height={200}
             />

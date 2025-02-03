@@ -23,7 +23,7 @@ const CountryCard: React.FC<ICountryCardProps> = ({
       <Image
         src={countryFlag}
         alt={`${country} flag`}
-        className="rounded-t-lg object-cover w-full"
+        className="h-[200px] rounded-t-lg object-cover w-full"
         width={200}
         height={200}
       />
