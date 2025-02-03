@@ -6,7 +6,7 @@ import { Icon } from "@iconify/react";
 import CountryCard from "./CountryCard";
 import { ICountry, IRegionOption, ICountryDetails } from "@/types/country";
 
-const CountryList = () => {
+const Home = () => {
   const router = useRouter();
   const [countries, setCountries] = useState<ICountry[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,6 +26,7 @@ const CountryList = () => {
       try {
         const response = await fetch("https://restcountries.com/v3.1/all");
         const data: ICountryDetails[] = await response.json();
+        console.log("divine", data);
 
         const formattedData: ICountry[] = data.map((country) => {
           const capital = country.capital?.[0] ?? "";
@@ -112,4 +113,4 @@ const CountryList = () => {
   );
 };
 
-export default CountryList;
+export default Home;

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { IBasicDetail, ICountryCardProps } from "@/types/country";
+import Image from "next/image";
 
 const CountryCard: React.FC<ICountryCardProps> = ({
   country,
@@ -19,10 +20,12 @@ const CountryCard: React.FC<ICountryCardProps> = ({
 
   return (
     <div className="my-5 w-full shadow-lg cursor-pointer" onClick={onClick}>
-      <img
+      <Image
         src={countryFlag}
         alt={`${country} flag`}
-        className="rounded-t-lg object-cover h-[200px] w-full"
+        className="rounded-t-lg object-cover w-full"
+        width={200}
+        height={200}
       />
 
       <div className="bg-[#f6fffb] dark:bg-[#242424] dark:text-appWhite text-appDark shadow-sm px-3 py-2 cursor-pointer">

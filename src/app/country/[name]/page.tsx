@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Icon } from "@iconify/react";
 import { IBasicDetail, ICountryDetails } from "@/types/country";
 import Loading from "@/app/loading";
+import Image from "next/image";
 
 export default function CountryDetailsPage() {
   const router = useRouter();
@@ -33,13 +34,13 @@ export default function CountryDetailsPage() {
     fetchCountryData();
   }, []);
 
-   if (isLoading || !country) {
-     return (
-       <div className="w-full lg:px-12 px-6 lg:mt-28 mt-24">
-         <Loading />
-       </div>
-     );
-   }
+  if (isLoading || !country) {
+    return (
+      <div className="w-full lg:px-12 px-6 lg:mt-28 mt-24">
+        <Loading />
+      </div>
+    );
+  }
 
   const getNativeNames = (nativeName?: {
     [key: string]: { common: string };
@@ -108,10 +109,12 @@ export default function CountryDetailsPage() {
         </button>
         <div className="w-full border dark:border-appGreen/35 p-3 rounded-xl lg:max-w-[30rem] mx-auto shadow-md">
           <div className="mt-4">
-            <img
+            <Image
               src={country.countryFlag}
               alt={`${country.name.common} flag`}
-              className="h-[200px] w-full object-cover rounded-lg"
+              className="w-full object-cover rounded-lg"
+              width={200}
+              height={200}
             />
             <h1 className="text-xl font-bold my-4 text-appGreen">
               {country.name.common}
