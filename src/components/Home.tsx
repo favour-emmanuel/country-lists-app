@@ -1,40 +1,42 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Icon } from "@iconify/react";
 import CountryCard from "./CountryCard";
 import { ICountry, IRegionOption, ICountryDetails } from "@/types/country";
+import Loading from "@/app/loading";
 
 const Home = () => {
   const router = useRouter();
   const [countries, setCountries] = useState<ICountry[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterRegion, setFilterRegion] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   const regionOptions: IRegionOption[] = [
     { value: "", label: "Filter by Region" },
-    { value: "Africa", label: "Africa" },
-    { value: "Americas", label: "America" },
-    { value: "Asia", label: "Asia" },
-    { value: "Europe", label: "Europe" },
-    { value: "Oceania", label: "Oceania" },
+    { value: "africa", label: "Africa" },
+    { value: "americas", label: "America" },
+    { value: "asia", label: "Asia" },
+    { value: "europe", label: "Europe" },
+    { value: "oceania", label: "Oceania" },
   ];
 
   useEffect(() => {
     const fetchCountries = async () => {
       try {
         const response = await fetch("https://restcountries.com/v3.1/all");
+        if (!response.ok) throw new Error("Failed to fetch countries");
         const data: ICountryDetails[] = await response.json();
-        console.log("divine", data);
 
         const formattedData: ICountry[] = data.map((country) => {
           const capital = country.capital?.[0] ?? "";
-
           return {
             country: country.name.common,
             population: country.population.toLocaleString(),
-            region: country.region,
+            region: country.region.toLowerCase(),
             capital,
             countryFlag: country.flags.svg,
             details: {
@@ -46,17 +48,24 @@ const Home = () => {
 
         setCountries(formattedData);
       } catch (error) {
-        console.error("Error fetching countries:", error);
+        setError("Error fetching countries. Please try again later.");
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchCountries();
   }, []);
 
-  const filteredCountries = countries.filter(
-    (country) =>
-      country.country.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filterRegion ? country.region === filterRegion : true)
+  const filteredCountries = useMemo(
+    () =>
+      countries.filter(
+        (country) =>
+          country.country.toLowerCase().includes(searchTerm.toLowerCase()) &&
+          (filterRegion ? country.region === filterRegion.toLowerCase() : true)
+      ),
+    [countries, searchTerm, filterRegion]
   );
 
   const handleCountryClick = (country: ICountry) => {
@@ -93,6 +102,9 @@ const Home = () => {
           ))}
         </select>
       </div>
+
+      {loading && <Loading />}
+      {error && <p className="text-center mt-5 text-red-500">{error}</p>}
 
       <div className="mt-12">
         <div className="grid lg:grid-cols-3 gap-4 grid-cols-1 items-center">
